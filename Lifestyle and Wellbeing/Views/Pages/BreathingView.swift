@@ -20,6 +20,7 @@ struct CustomLinearProgressViewStyle: ProgressViewStyle {
 }
 
 struct BreathingView: View {
+    @ObservedObject var storedData: StoredData
     @State var circleSize = CGFloat(200)
     var body: some View {
         VStack {
@@ -51,5 +52,5 @@ struct BreathingView: View {
 
 
 #Preview {
-    BreathingView()
+    BreathingView(storedData: StoredData())
 }

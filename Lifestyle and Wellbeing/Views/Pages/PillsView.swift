@@ -18,6 +18,7 @@ var pills = [
 ]
 
 struct PillsView: View {
+    @ObservedObject var storedData: StoredData
     var body: some View {
         Text("Pills")
             .font(.title)
@@ -49,5 +50,5 @@ struct PillsView: View {
 }
 
 #Preview {
-    PillsView()
+    PillsView(storedData: StoredData())
 }

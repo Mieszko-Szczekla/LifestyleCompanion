@@ -23,6 +23,8 @@ struct RecommendationView: View {
     var done = 0
     var goal = 1
     
+    var callback: () -> Void = {() -> Void in return}
+    
     var body: some View {
         HStack {
                 icon
@@ -50,10 +52,12 @@ struct RecommendationView: View {
                     }
                     .padding(.trailing, 15))
               : AnyView(EmptyView())
-            detailed ? AnyView(Image(systemName: "square.and.pencil.circle.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 30, height: 30)) : AnyView(EmptyView())
+            detailed ? AnyView(Button(action: callback) {
+                Image(systemName: "square.and.pencil.circle.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 30, height: 30)
+            }) : AnyView(EmptyView())
         }
         .padding()
         .background(

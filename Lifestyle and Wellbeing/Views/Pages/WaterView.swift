@@ -5,11 +5,9 @@
 
 import SwiftUI
 
-struct WaterView: View {
-    @State var waterCapacity: Int = 2250
-    @State var waterIntake: Int = 750
+@MainActor struct WaterView: View {
+    @ObservedObject var storedData: StoredData
     @State var waterGlass: Int = 250
-    
     var body: some View {
         Text("Water")
             .font(.title)
@@ -21,7 +19,7 @@ struct WaterView: View {
                 .hidden()
                 .frame(
                     width: 200,
-                    height: CGFloat(Float(waterCapacity - waterIntake) * 500.0 / Float(waterCapacity)))
+                    height: CGFloat(Float(storedData.waterGoal - storedData.waterNow) * 500.0 / Float(storedData.waterGoal)))
             Rectangle()
                 .fill(LinearGradient(
                     colors: [colorWater, Color(red: 0.33, green: 0.5, blue: 1)],
@@ -30,7 +28,7 @@ struct WaterView: View {
                 ))
                 .frame(
                     width: 200,
-                    height: waterIntake > waterCapacity ? 500.0 : CGFloat(Float(waterIntake) * 500.0 / Float(waterCapacity))
+                    height: storedData.waterNow > storedData.waterGoal ? 500.0 : CGFloat(Float(storedData.waterNow) * 500.0 / Float(storedData.waterGoal))
                 )
                 
         }
@@ -62,10 +60,10 @@ struct WaterView: View {
             
             Button(action: {
                         withAnimation {
-                            if waterIntake-waterGlass < 0 {
-                                waterIntake = 0
+                            if storedData.waterNow-waterGlass < 0 {
+                                storedData.setWaterNow(now: 0)
                             } else {
-                                waterIntake -= waterGlass
+                                storedData.setWaterNow(now: storedData.waterNow - waterGlass)
                             }
                         }
                     }) {
@@ -78,10 +76,10 @@ struct WaterView: View {
             
             Button(action: {
                         withAnimation {
-                            if waterIntake+waterGlass > waterCapacity {
-                                waterIntake = waterCapacity
+                            if storedData.waterNow+waterGlass > storedData.waterGoal {
+                                storedData.setWaterNow(now: storedData.waterGoal)
                             } else {
-                                waterIntake += waterGlass
+                                storedData.setWaterNow(now: storedData.waterNow+waterGlass)
                             }
                         }
                     }) {
@@ -103,5 +101,5 @@ struct WaterView: View {
 }
 
 #Preview {
-    WaterView()
+    WaterView(storedData: StoredData())
 }

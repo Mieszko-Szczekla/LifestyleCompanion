@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var healthManager: HealthManager = HealthManager()
-    
+    @ObservedObject var storedData: StoredData
+    @ObservedObject var healthManager: HealthManager = HealthManager()
+    @State var intZero = 0
+    @State var intOne = 1
     var body: some View {
         VStack {
             Text("Welcome back")
@@ -30,8 +32,8 @@ struct HomeView: View {
                         dark_secondary: colorCaloriesDark,
                         light_secondary: colorCaloriesLight,
                         scale: 0.8,
-                        done: 234,
-                        goal: 500
+                        done: healthManager.calorieCount,
+                        goal: storedData.calsGoal
                     )
                     RecommendationView(
                         icon: Image(systemName: "figure.walk"),
@@ -40,11 +42,9 @@ struct HomeView: View {
                         dark_secondary: colorStepsDark,
                         light_secondary: colorStepsLight,
                         scale: 0.8,
-                        done: 4645,
-                        goal: 7000
-                    ).onAppear(){
-                        healthManager.getTodaySteps()
-                    }}.padding(0)
+                        done: healthManager.stepCount,
+                        goal: storedData.stepsGoal
+                    )}.padding(0)
                 HStack {
                     RecommendationView(
                         icon: Image(systemName: "drop.fill"),
@@ -53,8 +53,8 @@ struct HomeView: View {
                         dark_secondary: colorWaterDark,
                         light_secondary: colorWaterLight,
                         scale: 0.8,
-                        done: 750,
-                        goal: 2250
+                        done: storedData.waterNow,
+                        goal: storedData.waterGoal
                     )
                     RecommendationView(
                         icon: Image(systemName: "leaf.fill"),
@@ -63,8 +63,8 @@ struct HomeView: View {
                         dark_secondary: colorBreathingDark,
                         light_secondary: colorBreathingLight,
                         scale: 0.8,
-                        done: 2,
-                        goal: 3
+                        done: storedData.breathingNow,
+                        goal: storedData.breathingGoal
                     )}
             }
         }.padding(6.0)
@@ -72,5 +72,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(storedData: StoredData())
 }

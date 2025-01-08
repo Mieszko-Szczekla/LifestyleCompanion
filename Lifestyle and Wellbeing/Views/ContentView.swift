@@ -12,23 +12,24 @@ struct ContentView: View {
     @State var selection = 2
     @State var pickerColor = Color.green
     @State var onboardingComplete = true
+    @ObservedObject var storedData = StoredData()
     var body: some View {
         if onboardingComplete {
             TabView(selection: $selection) {
                 Tab("Water", systemImage: "drop", value: 0) {
-                    WaterView()
+                    WaterView(storedData: storedData)
                 }
                 Tab("Breathing", systemImage: "leaf", value: 1) {
-                    BreathingView()
+                    BreathingView(storedData: storedData)
                 }
                 Tab("Home", systemImage: "house", value: 2) {
-                    HomeView()
+                    HomeView(storedData: storedData)
                 }
                 Tab("Pills", systemImage: "pill", value: 3) {
-                    PillsView()
+                    PillsView(storedData: storedData)
                 }
                 Tab("Goals", systemImage: "medal.star.fill", value: 4) {
-                    GoalsView()
+                    GoalsView(storedData: storedData)
                 }
             }.accentColor(
                 selection == 0 ? colorWater :
