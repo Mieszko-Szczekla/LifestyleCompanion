@@ -29,7 +29,6 @@ class HealthManager: ObservableObject {
         let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: Date()), end: Date())
         let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate) { _, result, error in
             guard let quantity = result?.sumQuantity(), error==nil else {
-                print("Error getting steps")
                 return
             }
             Task { @MainActor in
@@ -45,7 +44,6 @@ class HealthManager: ObservableObject {
         let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: Date()), end: Date())
         let query = HKStatisticsQuery(quantityType: cals, quantitySamplePredicate: predicate) { _, result, error in
             guard let quantity = result?.sumQuantity(), error==nil else {
-                print("Error getting calories")
                 return
             }
             Task { @MainActor in

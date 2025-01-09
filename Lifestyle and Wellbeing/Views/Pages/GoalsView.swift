@@ -13,6 +13,8 @@ struct GoalsView: View {
     @State var inputField: Int = 250
     @State var changedProperty: String = "Incorrect State"
     @State var modifyOverlay: Bool = false
+    @State var usedSetter: (Int) -> Void = {(x: Int) in print(x)}
+    @State var warningDisplayed: Bool = false
 
     var body: some View {
         ZStack {
@@ -31,7 +33,11 @@ struct GoalsView: View {
                         unit: "kcal",
                         done: healthManager.calorieCount,
                         goal: storedData.calsGoal,
-                        callback: energyCallback
+                        callback: callback(
+                            defaultInput: storedData.calsGoal,
+                            promptName: "Enter calories (kcal)",
+                            setter: storedData.setCalsGoal
+                        )
                     )
                     RecommendationView(
                         icon: Image(systemName: "figure.walk"),
@@ -41,7 +47,12 @@ struct GoalsView: View {
                         light_secondary: colorStepsLight,
                         detailed: true,
                         done: healthManager.stepCount,
-                        goal: storedData.stepsGoal
+                        goal: storedData.stepsGoal,
+                        callback: callback(
+                            defaultInput: storedData.stepsGoal,
+                            promptName: "Enter number of steps",
+                            setter: storedData.setStepsGoal
+                        )
                     )
                     RecommendationView(
                         icon: Image(systemName: "drop.fill"),
@@ -52,7 +63,12 @@ struct GoalsView: View {
                         detailed: true,
                         unit: "mL",
                         done: storedData.waterNow,
-                        goal: storedData.waterGoal
+                        goal: storedData.waterGoal,
+                        callback: callback(
+                            defaultInput: storedData.waterGoal,
+                            promptName: "Enter amount of water (mL)",
+                            setter: storedData.setWaterGoal
+                        )
                     )
                     RecommendationView(
                         icon: Image(systemName: "leaf.fill"),
@@ -62,7 +78,12 @@ struct GoalsView: View {
                         light_secondary: colorBreathingLight,
                         detailed: true,
                         done: storedData.breathingNow,
-                        goal: storedData.breathingGoal
+                        goal: storedData.breathingGoal,
+                        callback: callback(
+                            defaultInput: storedData.breathingGoal,
+                            promptName: "Enter number of breathign sessions",
+                            setter: storedData.setBreathingGoal
+                        )
                     )
                 }
                 .padding(8)
@@ -70,27 +91,47 @@ struct GoalsView: View {
             }
             modifyOverlay ? AnyView(ZStack {
                 Rectangle().fill(.black).opacity(0.5).padding(.vertical, -100.0)
+                    .onTapGesture {
+                        modifyOverlay=false
+                    }
                 RoundedRectangle(cornerSize: CGSize(width: 15, height: 15))
                         .fill(.background)
                         .frame(width:300, height:150)
                 VStack {
                     Text(changedProperty)
-                    TextField("", value: $inputField, formatter: NumberFormatter())
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .font(.system(size: 30))
-                                    .frame(width: 250)
-                    Button("Confirm") {
-                        print("Hello")
+                    VStack{
+                        TextField("", value: $inputField, formatter: NumberFormatter())
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .font(.system(size: 30))
+                        Button("Confirm") {
+                            if (inputField > 0) {
+                                usedSetter(inputField)
+                                modifyOverlay = false
+                            } else {
+                                warningDisplayed = true
+                            }
+                        }
+                    }
+                    .frame(width: 250)
+                    .alert("Number provided must be positive", isPresented: $warningDisplayed) {
+                        Button("OK", role: .cancel) { }
                     }
                 }
             }) : AnyView(EmptyView())
         }
     }
     
-    func energyCallback() {
-        inputField = 0
-        changedProperty = "Change energy goal"
-        modifyOverlay = true
+    func callback(
+        defaultInput: Int,
+        promptName: String,
+        setter: @escaping (Int)->Void = {(x:Int) in print(x)}
+    ) -> (() -> Void) {
+        return { () in
+            inputField = defaultInput
+            changedProperty = promptName
+            modifyOverlay = true
+            usedSetter = setter
+        }
     }
 }
 
