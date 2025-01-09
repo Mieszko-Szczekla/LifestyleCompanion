@@ -12,6 +12,7 @@ struct BreathingCardView: View {
     var t1: Int
     var t2: Int
     var t3: Int
+    var ss: (Int, Int, Int, Int) -> Void
     
     var body: some View {
         VStack {
@@ -21,7 +22,7 @@ struct BreathingCardView: View {
                     .padding(.leading, 20)
                 Spacer()
                 Button("Start", systemImage: "play") {
-                    
+                    ss(t1, t2, t3, 4)
                 }
                 .buttonStyle(BorderedProminentButtonStyle())
                 .accentColor(colorBreathing)
@@ -72,5 +73,5 @@ struct BreathingCardView: View {
 }
 
 #Preview {
-    BreathingCardView(title: "Stress", t1: 4, t2: 7, t3: 8)
+    BreathingCardView(title: "Stress", t1: 4, t2: 7, t3: 8, ss: {(x: Int, y: Int, z: Int, w: Int) in})
 }

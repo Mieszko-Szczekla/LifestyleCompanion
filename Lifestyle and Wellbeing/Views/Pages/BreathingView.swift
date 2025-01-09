@@ -22,6 +22,7 @@ struct CustomLinearProgressViewStyle: ProgressViewStyle {
 struct BreathingView: View {
     @ObservedObject var storedData: StoredData
     @State var circleSize = CGFloat(200)
+    @State var active: Bool = false
     var body: some View {
         VStack {
                 Text("Breathing")
@@ -33,19 +34,38 @@ struct BreathingView: View {
                 .shadow(color: colorBreathing, radius: circleSize/20)
                 .frame(width: circleSize, height: circleSize)
             Spacer()
-            BreathingCardView(title: "Relaxation", t1: 3, t2: 3, t3: 6)
-            BreathingCardView(title: "Stress", t1: 4, t2: 7, t3: 8)
+            active ? AnyView(Button("Stop") {
+                print("Stop")
+                active = false;
+            }) : AnyView(VStack {
+                BreathingCardView(title: "Relaxation", t1: 3, t2: 3, t3: 6, ss: startBreathing)
+                BreathingCardView(title: "Stress", t1: 4, t2: 7, t3: 8,  ss: startBreathing)
+            })
         }
         .padding(.bottom, 10)
     }
     
-    func switchSize(numberOfSwitches: Int , cycleDuration: CGFloat) {
-        if (numberOfSwitches < 1){
+    func startBreathing(t1: Int, t2: Int, t3: Int, cycles: Int) {
+        active = true
+        switchSize(t1: t1, t2: t2, t3: t3, cycles: cycles)
+    }
+    
+    func switchSize(t1: Int, t2: Int, t3: Int, cycles: Int) {
+        if (cycles < 1 || !active){
+            active = false
+            storedData.setBreathingNow(now: storedData.breathingNow+1)
             return
         }
-        withAnimation(.easeInOut(duration: cycleDuration/2)){circleSize = circleSize == 200 ? 300 : 200}
-        DispatchQueue.main.asyncAfter(deadline: .now() + cycleDuration/2) {
-            switchSize(numberOfSwitches: numberOfSwitches-1, cycleDuration: cycleDuration)
+        withAnimation(.easeInOut(duration: TimeInterval(t1))){
+            circleSize = 300
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + CGFloat(t1 + t2)) {
+            withAnimation(.easeInOut(duration: TimeInterval(t1))){
+                circleSize = 200
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + CGFloat(t1 + t2 + t3)) {
+            switchSize(t1: t1, t2: t2, t3: t3, cycles: cycles - 1)
         }
     }
 }
