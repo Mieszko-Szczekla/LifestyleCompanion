@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var storedData: StoredData
+    @ObservedObject var checklist: Checklist
     @ObservedObject var healthManager: HealthManager = HealthManager()
     @State var intZero = 0
     @State var intOne = 1
@@ -22,7 +23,11 @@ struct HomeView: View {
                 RecommendationView(
                     icon: Image(systemName: "pill.fill"),
                     title: "Pills",
-                    color: colorPills
+                    color: colorPills,
+                    dark_secondary: colorPillsDark,
+                    light_secondary: colorPillsLight,
+                    done: checklist.done,
+                    goal: checklist.goal
                 )
                 HStack {
                     RecommendationView(
@@ -72,5 +77,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(storedData: StoredData())
+    HomeView(storedData: StoredData(), checklist: Checklist())
 }

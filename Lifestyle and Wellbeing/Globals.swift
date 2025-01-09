@@ -7,8 +7,12 @@
 import SwiftUI
 
 let colorHome = Color.cyan
-let colorPills = Color(red: 0.91765, green: 0.26667, blue: 0.35294)
 let colorGoals = Color.orange
+
+
+let colorPills = Color(red: 0.91765, green: 0.26667, blue: 0.35294)
+let colorPillsDark = Color(red: 0.29, green: 0.18, blue: 0.22)
+let colorPillsLight = Color(red: 1, green: 0.9, blue: 0.95)
 
 let colorWater = Color(red: 0.20392, green: 0.47059, blue: 0.96471)
 let colorWaterDark = Color(red: 0.1, green: 0.18, blue: 0.36)

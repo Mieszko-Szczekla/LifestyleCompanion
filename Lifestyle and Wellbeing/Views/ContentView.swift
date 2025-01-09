@@ -13,6 +13,7 @@ struct ContentView: View {
     @State var pickerColor = Color.green
     @State var onboardingComplete = true
     @ObservedObject var storedData = StoredData()
+    @ObservedObject var checklist = Checklist()
     var body: some View {
         if onboardingComplete {
             TabView(selection: $selection) {
@@ -23,10 +24,10 @@ struct ContentView: View {
                     BreathingView(storedData: storedData)
                 }
                 Tab("Home", systemImage: "house", value: 2) {
-                    HomeView(storedData: storedData)
+                    HomeView(storedData: storedData, checklist: checklist)
                 }
                 Tab("Pills", systemImage: "pill", value: 3) {
-                    PillsView(storedData: storedData)
+                    PillsView(storedData: storedData, checklist: checklist)
                 }
                 Tab("Goals", systemImage: "medal.star.fill", value: 4) {
                     GoalsView(storedData: storedData)

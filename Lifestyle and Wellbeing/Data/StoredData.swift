@@ -34,6 +34,14 @@ import SwiftUI
         breathingNow = (StoredData.day() == defaults.integer(forKey: "breathingExpire")) ? defaults.integer(forKey: "breathingNow") : 0
     }
     
+    func shouldResetChecklist() -> Bool {
+        return StoredData.day() != defaults.integer(forKey: "checklistExpire")
+    }
+    
+    func setChecklist() {
+        defaults.set(StoredData.day(), forKey: "checklistExpire")
+    }
+    
     func setWaterGoal(goal: Int) {
         Task { @MainActor in
             if (goal <= 0) {
