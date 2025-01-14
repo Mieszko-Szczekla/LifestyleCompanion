@@ -6,14 +6,66 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		12AB4B972D31705B00EDA0C4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120A48F92D3108DF0094AA7D /* WidgetKit.framework */; };
+		12AB4B982D31705B00EDA0C4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 120A48FB2D3108E00094AA7D /* SwiftUI.framework */; };
+		12AB4BA52D31705D00EDA0C4 /* HomescreenWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 12AB4B962D31705B00EDA0C4 /* HomescreenWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		12AB4BA32D31705D00EDA0C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 125D6DBE2D20598100FEDB83 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12AB4B952D31705B00EDA0C4;
+			remoteInfo = HomescreenWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		120A490A2D3108E20094AA7D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				12AB4BA52D31705D00EDA0C4 /* HomescreenWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		120A48F92D3108DF0094AA7D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		120A48FB2D3108E00094AA7D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		125D6DC62D20598200FEDB83 /* Lifestyle and Wellbeing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lifestyle and Wellbeing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		12AB4B962D31705B00EDA0C4 /* HomescreenWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HomescreenWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		12AB4BAA2D317CAF00EDA0C4 /* HomescreenWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HomescreenWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		12AB4BA62D31705D00EDA0C4 /* Exceptions for "HomescreenWidget" folder in "HomescreenWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 12AB4B952D31705B00EDA0C4 /* HomescreenWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		125D6DC82D20598200FEDB83 /* Lifestyle and Wellbeing */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Lifestyle and Wellbeing";
+			sourceTree = "<group>";
+		};
+		12AB4B992D31705B00EDA0C4 /* HomescreenWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				12AB4BA62D31705D00EDA0C4 /* Exceptions for "HomescreenWidget" folder in "HomescreenWidgetExtension" target */,
+			);
+			path = HomescreenWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,13 +78,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		12AB4B932D31705B00EDA0C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12AB4B982D31705B00EDA0C4 /* SwiftUI.framework in Frameworks */,
+				12AB4B972D31705B00EDA0C4 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		120A48F82D3108DF0094AA7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				120A48F92D3108DF0094AA7D /* WidgetKit.framework */,
+				120A48FB2D3108E00094AA7D /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		125D6DBD2D20598100FEDB83 = {
 			isa = PBXGroup;
 			children = (
+				12AB4BAA2D317CAF00EDA0C4 /* HomescreenWidgetExtension.entitlements */,
 				125D6DC82D20598200FEDB83 /* Lifestyle and Wellbeing */,
+				12AB4B992D31705B00EDA0C4 /* HomescreenWidget */,
+				120A48F82D3108DF0094AA7D /* Frameworks */,
 				125D6DC72D20598200FEDB83 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				125D6DC62D20598200FEDB83 /* Lifestyle and Wellbeing.app */,
+				12AB4B962D31705B00EDA0C4 /* HomescreenWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,10 +129,12 @@
 				125D6DC22D20598200FEDB83 /* Sources */,
 				125D6DC32D20598200FEDB83 /* Frameworks */,
 				125D6DC42D20598200FEDB83 /* Resources */,
+				120A490A2D3108E20094AA7D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				12AB4BA42D31705D00EDA0C4 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				125D6DC82D20598200FEDB83 /* Lifestyle and Wellbeing */,
@@ -69,6 +145,28 @@
 			productName = "Lifestyle and Wellbeing";
 			productReference = 125D6DC62D20598200FEDB83 /* Lifestyle and Wellbeing.app */;
 			productType = "com.apple.product-type.application";
+		};
+		12AB4B952D31705B00EDA0C4 /* HomescreenWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 12AB4BA72D31705D00EDA0C4 /* Build configuration list for PBXNativeTarget "HomescreenWidgetExtension" */;
+			buildPhases = (
+				12AB4B922D31705B00EDA0C4 /* Sources */,
+				12AB4B932D31705B00EDA0C4 /* Frameworks */,
+				12AB4B942D31705B00EDA0C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				12AB4B992D31705B00EDA0C4 /* HomescreenWidget */,
+			);
+			name = HomescreenWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = HomescreenWidgetExtension;
+			productReference = 12AB4B962D31705B00EDA0C4 /* HomescreenWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +179,9 @@
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					125D6DC52D20598200FEDB83 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					12AB4B952D31705B00EDA0C4 = {
 						CreatedOnToolsVersion = 16.2;
 					};
 				};
@@ -100,12 +201,20 @@
 			projectRoot = "";
 			targets = (
 				125D6DC52D20598200FEDB83 /* Lifestyle and Wellbeing */,
+				12AB4B952D31705B00EDA0C4 /* HomescreenWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		125D6DC42D20598200FEDB83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		12AB4B942D31705B00EDA0C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +231,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		12AB4B922D31705B00EDA0C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		12AB4BA42D31705D00EDA0C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 12AB4B952D31705B00EDA0C4 /* HomescreenWidgetExtension */;
+			targetProxy = 12AB4BA32D31705D00EDA0C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		125D6DD22D20598300FEDB83 /* Debug */ = {
@@ -253,6 +377,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lifestyle and Wellbeing/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lifestyle & Wellbeing";
@@ -285,6 +410,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Lifestyle and Wellbeing/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Lifestyle & Wellbeing";
@@ -308,6 +434,62 @@
 			};
 			name = Release;
 		};
+		12AB4BA82D31705D00EDA0C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HomescreenWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HomescreenWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HomescreenWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pwr.szczekla.Lifestyle-and-Wellbeing.HomescreenWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		12AB4BA92D31705D00EDA0C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = HomescreenWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HomescreenWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HomescreenWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "pwr.szczekla.Lifestyle-and-Wellbeing.HomescreenWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -325,6 +507,15 @@
 			buildConfigurations = (
 				125D6DD52D20598300FEDB83 /* Debug */,
 				125D6DD62D20598300FEDB83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		12AB4BA72D31705D00EDA0C4 /* Build configuration list for PBXNativeTarget "HomescreenWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12AB4BA82D31705D00EDA0C4 /* Debug */,
+				12AB4BA92D31705D00EDA0C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

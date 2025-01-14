@@ -8,6 +8,7 @@ import SwiftUI
 
 @MainActor class StoredData : ObservableObject {
     private let defaults = UserDefaults.standard
+    private let widget = UserDefaults(suiteName: "group.pwr.szczekla.Lifestyle_and_Wellbeing")
     
     @Published var waterGoal: Int = 0
     @Published var breathingGoal: Int = 0
@@ -32,6 +33,9 @@ import SwiftUI
 
         waterNow = (StoredData.day() == defaults.integer(forKey: "waterExpire")) ? defaults.integer(forKey: "waterNow") : 0
         breathingNow = (StoredData.day() == defaults.integer(forKey: "breathingExpire")) ? defaults.integer(forKey: "breathingNow") : 0
+        
+        widget?.set(140*waterNow/waterGoal, forKey: "water")
+        widget?.set(140*breathingNow/breathingGoal, forKey: "meditation")
     }
     
     func shouldResetChecklist() -> Bool {
@@ -49,6 +53,7 @@ import SwiftUI
             }
             waterGoal = goal
             defaults.set(goal, forKey: "waterGoal")
+            widget?.set(140*waterNow/waterGoal, forKey: "water")
         }
     }
     
@@ -79,6 +84,7 @@ import SwiftUI
             }
             breathingGoal = goal
             defaults.set(goal, forKey: "breathingGoal")
+            widget?.set(140*breathingNow/breathingGoal, forKey: "meditation")
         }
     }
     
@@ -87,6 +93,7 @@ import SwiftUI
             waterNow = now
             defaults.set(now, forKey: "waterNow")
             defaults.set(StoredData.day(), forKey: "waterExpire")
+            widget?.set(140*waterNow/waterGoal, forKey: "water")
         }
     }
     
@@ -95,6 +102,7 @@ import SwiftUI
             breathingNow = now
             defaults.set(now, forKey: "breathingNow")
             defaults.set(StoredData.day(), forKey: "breathingExpire")
+            widget?.set(140*breathingNow/breathingGoal, forKey: "meditation")
         }
     }
     

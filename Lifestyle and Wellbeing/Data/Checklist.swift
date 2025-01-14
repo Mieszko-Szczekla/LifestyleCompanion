@@ -18,6 +18,7 @@ class Checklist : ObservableObject {
     @Published var goal: Int = 1
     @ObservedObject private var sd = StoredData()
     private let defaults = UserDefaults.standard
+    private let widget = UserDefaults(suiteName: "group.pwr.szczekla.Lifestyle_and_Wellbeing")
     
     init() {
         let noReset = !StoredData().shouldResetChecklist()
@@ -82,6 +83,7 @@ class Checklist : ObservableObject {
             }
         }
         done = n
+        widget?.set(140*done/goal, forKey: "meds")
     }
     
     
